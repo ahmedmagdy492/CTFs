@@ -1,0 +1,28 @@
+e and n are public and are used to calculate the private key d
+-n is a large prime number and in order to break RSA we should get its prime factors p and q
+n = p * q
+-we can do this if the 2 prime numbers multiplied is close to each other and we can use an algorithem called "fermat's factorization algorithem" to figure out the 2 prime numbers - i found out at the end that fermat's algorithem won't work here cause p and q are not close to each other
+
+so to solve this problem:
+first you need to figure out a way to break rsa and you will find a lot of ways online but unfortuntaliy each one of them is used in a specific case for example here the one that we have happens to have a weak prime factors or not large enough prime numbers.
+so essentially RSA relies on the following formula: e.d ≡ 1 mod ϕ(N) or you can say this equation represents the relationship between the public and private keys.
+so here we have e and we need to get p and q since ϕ(N) = (q-1)*(p-1) and the main purpose here is to find the value of d which represents the private key in which we can use to decrypt the original cipher.
+to break N into P and Q you can use an online tool to do so such as this one "https://www.alpertron.com.ar/ECM.HTM" and it won't take much to get the values back to you which in this case are the following:
+N = 631371953793368771804570727896887140714495090919073481680274581226742748040342637
+P = 1461849912200000206276283741896701133693
+Q = 431899300006243611356963607089521499045809
+
+now we can caluclate the totient of N (which counts the relativly prime numbers from 0 to N) using the following formula:
+ϕ(N) = (1461849912200000206276283741896701133693 - 1)*(431899300006243611356963607089521499045809-1)
+     = 631371953793368771804570727896887140714061729769155038068711341335911329840163136
+     
+no in order to solve for d in the previously mentioned equation we need to do mod inverse which can be done using the extended euclidian algorithm or egcd for short:
+so here is the equation that we want to solve again: e*d ≅ 1 mod n
+so what we want to do here is to find some number d such that e*d mod n = 1
+we can actually use an online equation solver to solve the equation: d = Power[65537,-1] mod 631371953793368771804570727896887140714061729769155038068711341335911329840163136
+now we got d since d is the multiplicative inverse of e and phi
+now in order for us to get the plain text we need to use the following formula:
+m ≡ M^d mod N
+
+so with python we can do the following:
+refer to solution.py for the actual code

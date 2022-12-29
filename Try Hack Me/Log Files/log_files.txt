@@ -1,0 +1,41 @@
+
+Log files are files that contain historical records of events and other data from an application. Some common examples of events that you may find in a log file:
+
+    Login attempts or failures
+    Traffic on a network
+    Things (website URLs, files, etc.) that have been accessed
+    Password changes
+    Application errors (used in debugging)
+    and many, many more
+
+By making a historical record of events that have happened, log files are extremely important pieces of evidence when investigating:
+
+    What has happened?
+    When has it happened?
+    Where has it happened?
+    Who did it? Were they successful?
+    What is the result of this action?
+
+Log files come in all shapes and sizes. However, a useful log will contain at least some of the following attributes:
+
+    A timestamp of the event (I.e. Date & Time)
+    The name of the service that is generating the logfile (I.e. SSH is a remote device management protocol that allows a user to login into a system remotely)
+    The actual event the service logs (i.e., in the event of a failed authentication, what credentials were tried, and by whom? (IP address)).
+
+Windows:
+
+Application	This category contains all the events related to applications on the system. For example, you can determine when services or applications are stopped and started and why.	The service "tryhackme.exe" was restarted.
+Security	This category contains all of the events related to the system's security. For example, you can see when a user logs in to a system or accesses the credential manager for passwords.	User "cmnatic" successfully logged in.
+Setup	This category contains all of the events related to the system's maintenance. For example, Windows update logs are stored here.	The system must be restarted before "KB10134" can be installed.
+System	This category contains all the events related to the system itself. This category of events contains logs that relate to changes in the system itself. For example, when the system is powered on or off or when devices such as USB drives are plugged-in or removed.	The system unexpectedly shutdown due to power issues.
+
+Linux:
+
+Authentication	This log file contains all authentication (log in). This is usually attempted either remotely or on the system itself (i.e., accessing another user after logging in).	auth.log	Failed password for root from 192.168.1.35 port 22 ssh2.
+Package Management	This log file contains all events related to package management on the system. When installing a new software (a package), this is logged in this file. This is useful for debugging or reverting changes in case this installation causes unintended behaviour on the system.	dpkg.log	2022-06-03 21:45:59 installed neofetch.
+Syslog	This log file contains all events related to things happening in the system's background. For example, crontabs executing, services starting and stopping, or other automatic behaviours such as log rotation. This file can help debug problems.	syslog	2022-06-03 13:33:7 Finished Daily apt download activities..
+Kernel	This log file contains all events related to kernel events on the system. For example, changes to the kernel, or output from devices such as networking equipment or physical devices such as USB devices. 	kern.log	2022-06-03 10:10:01 Firewalling registered
+
+
+Resources on log analysis:
+https://tryhackme.com/module/endpoint-security-monitoring
