@@ -1,0 +1,115 @@
+What is Email Analysis?
+
+Email analysis is the process of extracting the email header information to expose the email file details. The email header contains the technical details of the email like sender, recipient, path, return address and attachments. Usually, these details are enough to determine if there is something suspicious/abnormal in the email and decide on further actions on the email, like filtering/quarantining or delivering. This process can be done manually and with the help of tools.
+
+There are two main concerns in email analysis.
+
+    Security issues: Identifying suspicious/abnormal/malicious patterns in emails.
+    Performance issues: Identifying delivery and delay issues in emails.
+
+In this task, we will focus on security concerns on emails, a.k.a. phishing. Before focusing on the hands-on email analysis, you will need to be familiar with the terms "social engineering" and "phishing".
+
+    Social engineering: Social engineering is the psychological manipulation of people into performing or divulging information by exploiting weaknesses in human nature. These "weaknesses" can be curiosity, jealousy, greed, kindness, and willingness to help someone.
+    Phishing: Phishing is a sub-section of social engineering delivered through email to trick someone into either revealing personal information and credentials or executing malicious code on their computer.
+
+Phishing emails will usually appear to come from a trusted source, whether that's a person or a business. They include content that tries to tempt or trick people into downloading software, opening attachments, or following links to a bogus website. You can find more information on phishing by completing the phishing module.
+
+
+Does the Email Analysis Still Matter?
+
+Yes! Various academic research and technical reports highlight that phishing attacks are still extremely common, effective and difficult to detect. It is also part of penetration testing and red teaming implementations (paid security assessments that examine organisational cybersecurity). Therefore, email analysis competency is still an important skill to have. Today, various tools and technologies ease and speed up email analysis. Still, a skilled analyst should know how to conduct a manual analysis when there is no budget for automated solutions. It is also a good skill for individuals and non-security/IT people!
+
+Important Note: In-depth analysis requires an isolated environment to work. It is only suggested to download and upload the received emails and attachments if you are in the authorised team and have an isolated environment. Suppose you are outside the corresponding team or a regular user. In that case, you can evaluate the email header using the raw format and conduct the essential checks like the sender, recipient, spam score and server information. Remember that you have to inform the corresponding team afterwards.
+
+
+From	
+
+The sender's address.
+To	
+
+The receiver's address, including CC and BCC.
+Date	
+
+Timestamp, when the email was sent.
+Subject	
+
+The subject of the email.
+Return Path	
+
+The return address of the reply, a.k.a. "Reply-To".
+
+If you reply to an email, the reply will go to the address mentioned in this field.
+Domain Key and DKIM Signatures	
+
+Email signatures are provided by email services to identify and authenticate emails.
+SPF	
+
+Shows the server that was used to send the email.
+
+It will help to understand if the actual server is used to send the email from a specific domain.
+Message-ID	
+
+Unique ID of the email.
+MIME-Version	
+
+Used MIME version.
+
+It will help to understand the delivered "non-text" contents and attachments.
+X-Headers	
+
+The receiver mail providers usually add these fields.
+
+Provided info is usually experimental and can be different according to the mail provider.
+X-Received	
+
+Mail servers that the email went through.
+X-Spam Status	
+
+Spam score of the email.
+X-Mailer	
+
+Email client name.
+
+
+
+Text editors are helpful in analysis, but there are some tools that can help you to view the email details in a clearer format. In this task, we will use the "emlAnalyzer" tool to view the body of the email and analyse the attachments. The emlAnalyzer is a tool designed to parse email headers for a better view and analysis process. The tool is ready to use in the given VM. The tool can show the headers, body, embedded URLs, plaintext and HTML data, and attachments. The sample usage query is explained below.
+
+
+Query Details	Explanation
+emlAnalyzer	Main command
+-i 	File to analyse
+-i /path-to-file/filename
+Note: Remember, you can either give a full file path or navigate to the required folder using the "cd" command.
+--header	Show header
+-u	Show URLs
+--text	Show cleartext data
+--extract-all	Extract all attachments
+
+Sample usage is shown below. Now use the given sample and execute the given command.
+
+example:
+
+emlAnalyzer -i file.eml --header  --html -u --text --extract-all
+
+
+Additionally, you can use some Open Source Intelligence (OSINT) tools to check email reputation and enrich the findings. Visit the given site below and do a reputation check on the sender address and the address found in the return path.
+
+
+    Tool: https://emailrep.io/
+
+
+Tool	Purpose
+VirusTotal
+	A service that provides a cloud-based detection toolset and sandbox environment.
+InQuest
+	A service provides network and file analysis by using threat analytics.
+IPinfo.io
+	A service that provides detailed information about an IP address by focusing on geolocation data and service provider.
+Talos Reputation
+	An IP reputation check service is provided by Cisco Talos.
+Urlscan.io
+	A service that analyses websites by simulating regular user behaviour.
+Browserling
+	A browser sandbox is used to test suspicious/malicious links.
+Wannabrowser
+	A browser sandbox is used to test suspicious/malicious links.
